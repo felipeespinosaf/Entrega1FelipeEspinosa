@@ -6,9 +6,9 @@ from ProyectoCoder1App import views
 
 urlpatterns = [
     
-    path("", views.index),
-    path("jovenes", views.jovenes),
-    path("adultos", views.adultos),
-    path("viejos", views.viejos),
+    path("", views.index,name="inicio"),
+    path("jovenes", views.jovenes,name="jovenes"),
+    path("adultos", views.adultos,name="adultos"),
+    path("viejos", views.viejos,name="viejos"),
     
 ]
