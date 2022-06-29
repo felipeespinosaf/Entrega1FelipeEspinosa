@@ -54,6 +54,11 @@ def crear_joven(request):
         
         return render(request,"ProyectoCoder1App/formulario_joven.html",{"form":formulario_vacio})
     
+def buscar_joven(request):
+    
+    lista_jovenes = []
+    
+    return render(request, "ProyectoCoder1App/buscar_joven.html", {"jovenes":lista_jovenes})
     
 
 def adultos(request):
