@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from Entrega1.ProyectoCoder1.ProyectoCoder1App.forms import JovenFormulario
+from .models import*
+from ProyectoCoder1App import JovenFormulario
 # Create your views here.
 
 
@@ -23,3 +26,28 @@ def viejos(request):
     
     return render(request,"ProyectoCoder1App/viejos.html")
     # return HttpResponse ("Vista de viejos")
+    
+def joven_formulario(request):
+    
+    
+    if request.method =="Post":
+        
+        miFormulario=JovenFormulario(request.POST)
+        
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            
+            informacion = miFormulario.cleaned_data
+            
+        
+            joven=Joven(nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'])
+            
+            joven.save()
+        
+            return render(request, "ProyectoCoder1App/index.html")
+    else:
+        miFormulario=JovenFormulario()
+    
+    
+    return render(request, "ProyectoCoder1App/joven_formulario.html", {"miFormulario": miFormulario})
