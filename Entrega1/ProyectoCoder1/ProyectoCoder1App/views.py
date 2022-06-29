@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from Entrega1.ProyectoCoder1.ProyectoCoder1App.forms import JovenFormulario
+from ProyectoCoder1App import forms
 from .models import*
-from ProyectoCoder1App import JovenFormulario
+# from ProyectoCoder1App import JovenFormulario
 # Create your views here.
 
 
@@ -12,42 +12,61 @@ def index(request):
     return render(request,"ProyectoCoder1App/index.html")
     # return HttpResponse ("Vista de index")
 
+# def jovenes(request):
+    
+#     return render(request,"ProyectoCoder1App/jovenes.html")
+#     # return HttpResponse ("Vista de jovenes")
+
 def jovenes(request):
     
-    return render(request,"ProyectoCoder1App/jovenes.html")
-    # return HttpResponse ("Vista de jovenes")
+    jovenes=Joven
+    
+    lista_jovenes = Joven.objects.all()
+    
+    return render(request, "ProyectoCoder1App/jovenes.html", {"jovenes":lista_jovenes})
+
+def crear_joven(request):
+    
+    return render(request, "ProyectoCoder1App/formulario_joven.html",{})
 
 def adultos(request):
     
-    return render(request,"ProyectoCoder1App/adultos.html")
+    adultos=Adulto
+    
+    lista_adultos = Adulto.objects.all()
+    
+    return render(request, "ProyectoCoder1App/adultos.html", {"adultos":lista_adultos})
     # return HttpResponse ("Vista de adultos")
 
 def viejos(request):
     
-    return render(request,"ProyectoCoder1App/viejos.html")
+    viejos=Viejo
+    lista_viejos = Viejo.objects.all()
+    
+    return render(request, "ProyectoCoder1App/viejos.html", {"viejos":lista_viejos})
     # return HttpResponse ("Vista de viejos")
     
-def joven_formulario(request):
+# def joven_formulario(request):
     
     
-    if request.method =="Post":
+#     if request.method =="Post":
         
-        miFormulario=JovenFormulario(request.POST)
+#         miFormulario=JovenFormulario(request.POST)
         
-        print(miFormulario)
+#         print(miFormulario)
         
-        if miFormulario.is_valid:
+#         if miFormulario.is_valid:
             
-            informacion = miFormulario.cleaned_data
+#             informacion = miFormulario.cleaned_data
             
         
-            joven=Joven(nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'])
+#             joven=Joven(nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'])
             
-            joven.save()
+#             joven.save()
         
-            return render(request, "ProyectoCoder1App/index.html")
-    else:
-        miFormulario=JovenFormulario()
+#             return render(request, "ProyectoCoder1App/index.html")
+#     else:
+#         miFormulario=JovenFormulario()
     
     
-    return render(request, "ProyectoCoder1App/joven_formulario.html", {"miFormulario": miFormulario})
+#     return render(request, "ProyectoCoder1App/joven_formulario.html", {"miFormulario": miFormulario})

@@ -10,6 +10,7 @@ urlpatterns = [
     path("jovenes", views.jovenes,name="jovenes"),
     path("adultos", views.adultos,name="adultos"),
     path("viejos", views.viejos,name="viejos"),
-    path("joven_formulario", views.joven_formulario, name="joven_formulario"),
+    path("crear_joven",views.crear_joven,name="crear_joven"),
+    # path("joven_formulario", views.joven_formulario, name="joven_formulario"),
     
 ]

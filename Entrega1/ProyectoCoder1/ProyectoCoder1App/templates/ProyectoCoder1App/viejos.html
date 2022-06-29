@@ -6,4 +6,23 @@
 
 <h1>Este es contenido que cambio en los viejos</h1>
 
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-3">
+                Los viejos son:
+                <ul class="list-group">
+                    {% for viejo in viejos %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            {{viejo.nombre}}
+                            <span class="badge bg-success rounded-pill">{{viejo.apellido}}</span>     
+                            <span class="badge bg-success rounded-pill">{{viejo.edad}}</span>                     
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends "ProyectoCoder1App/padre.html" %}
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+<h2>Crea un joven nuevo</h2>
+<form action="" method="post">
+    {% csrf_token %}
+
+    <p>Nombre: <input type="text" name="nombre" id=""></p>
+    <P>Apellido: <input type="text" name="apellido" id=""></P>
+    <P>Edad: <input type="number" name="edad" id min="0"> </P>
+
+    <input type="submit" value="Crear Joven">
+</form>
+{% endblock %}
