@@ -17,10 +17,10 @@ class NuevoAdulto(forms.Form):
     
     edad= forms.IntegerField(min_value=0)
     
-# class ViejoFormulario(forms.Form):
+class NuevoViejo(forms.Form):
     
-#     nombre= forms.CharField()
+    nombre= forms.CharField()
     
-#     apellido= forms.CharField()
+    apellido= forms.CharField()
     
-#     edad= forms.IntegerField()
+    edad= forms.IntegerField()

@@ -96,6 +96,31 @@ def viejos(request):
     lista_viejos = Viejo.objects.all()
     
     return render(request, "ProyectoCoder1App/viejos.html", {"viejos":lista_viejos})
+
+def crear_viejo(request):
+    
+    
+    if request.method =="POST":
+        
+        formulario=NuevoViejo(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_viejo= formulario.cleaned_data
+        
+            viejo=Viejo(nombre=info_viejo["nombre"], apellido=info_viejo["apellido"], edad=int(info_viejo["edad"]))
+            
+            viejo.save()
+            
+            return redirect("viejos")
+        
+        else:
+            return render(request,"ProyectoCoder1App/formulario_viejo.html",{"form":formulario})
+    else:
+        
+        formulario_vacio = NuevoViejo()
+        
+        return render(request,"ProyectoCoder1App/formulario_viejo.html",{"form":formulario_vacio})
     # return HttpResponse ("Vista de viejos")
     
 # def joven_formulario(request):
