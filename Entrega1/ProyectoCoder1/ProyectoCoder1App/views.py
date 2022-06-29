@@ -5,7 +5,7 @@ from ProyectoCoder1App import forms
 from .models import*
 
 
-from .forms import NuevoJoven
+from .forms import *
 # from ProyectoCoder1App import J
 # ovenFormulario
 # Create your views here.
@@ -64,6 +64,31 @@ def adultos(request):
     
     return render(request, "ProyectoCoder1App/adultos.html", {"adultos":lista_adultos})
     # return HttpResponse ("Vista de adultos")
+    
+def crear_adulto(request):
+    
+    
+    if request.method =="POST":
+        
+        formulario=NuevoAdulto(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_adulto= formulario.cleaned_data
+        
+            adulto=Adulto(nombre=info_adulto["nombre"], apellido=info_adulto["apellido"], edad=int(info_adulto["edad"]))
+            
+            adulto.save()
+            
+            return redirect("adultos")
+        
+        else:
+            return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario})
+    else:
+        
+        formulario_vacio = NuevoAdulto()
+        
+        return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario_vacio})
 
 def viejos(request):
     
