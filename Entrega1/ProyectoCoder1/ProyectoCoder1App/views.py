@@ -54,7 +54,7 @@ def crear_joven(request):
         
         return render(request,"ProyectoCoder1App/formulario_joven.html",{"form":formulario_vacio})
     
-def buscar_nombre(request):
+def buscar_nombre_joven(request):
     
     if request.method == "POST":
         
@@ -62,13 +62,13 @@ def buscar_nombre(request):
         
         nombres = Joven.objects.filter(nombre__icontains=nombre)
         
-        return render(request, "ProyectoCoder1App/buscar_nombre.html", {"nombres":nombres})
+        return render(request, "ProyectoCoder1App/buscar_nombre_joven.html", {"nombres":nombres})
         
     else:
     
         nombres = []
     
-        return render(request, "ProyectoCoder1App/buscar_nombre.html", {"nombres":nombres})
+        return render(request, "ProyectoCoder1App/buscar_nombre_joven.html", {"nombres":nombres})
     
 
 def adultos(request):
@@ -104,34 +104,22 @@ def crear_adulto(request):
         
         return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario_vacio})
     
-def buscar_adulto(request):
+def buscar_nombre_adulto(request):
     
-    lista_adultos = []
+    if request.method == "POST":
+        
+        nombre= request.POST["nombre"]
+        
+        nombres = Adulto.objects.filter(nombre__icontains=nombre)
+        
+        return render(request, "ProyectoCoder1App/buscar_nombre_adulto.html", {"nombres":nombres})
+        
+    else:
     
-    return render(request, "ProyectoCoder1App/buscar_adulto.html", {"adultos":lista_adultos})
+        nombres = []
     
+        return render(request, "ProyectoCoder1App/buscar_nombre_adulto.html", {"nombres":nombres})
     
-    # if request.method =="POST":
-        
-    #     formulario=NuevoAdulto(request.POST)
-        
-    #     if formulario.is_valid():
-            
-    #         info_adulto= formulario.cleaned_data
-        
-    #         adulto=Adulto(nombre=info_adulto["nombre"], apellido=info_adulto["apellido"], edad=int(info_adulto["edad"]))
-            
-    #         adulto.save()
-            
-    #         return redirect("adultos")
-        
-    #     else:
-    #         return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario})
-    # else:
-        
-    #     formulario_vacio = NuevoAdulto()
-        
-    #     return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario_vacio})
 
 def viejos(request):
     
@@ -166,9 +154,19 @@ def crear_viejo(request):
         return render(request,"ProyectoCoder1App/formulario_viejo.html",{"form":formulario_vacio})
     # return HttpResponse ("Vista de viejos")
     
-def buscar_viejo(request):
+def buscar_nombre_viejo(request):
 
 
-    lista_viejos = []
+    if request.method == "POST":
+        
+        nombre= request.POST["nombre"]
+        
+        nombres = Viejo.objects.filter(nombre__icontains=nombre)
+        
+        return render(request, "ProyectoCoder1App/buscar_nombre_viejo.html", {"nombres":nombres})
+        
+    else:
     
-    return render(request, "ProyectoCoder1App/buscar_viejo.html", {"adultos":lista_viejos})
+        nombres = []
+    
+        return render(request, "ProyectoCoder1App/buscar_nombre_viejo.html", {"nombres":nombres})
