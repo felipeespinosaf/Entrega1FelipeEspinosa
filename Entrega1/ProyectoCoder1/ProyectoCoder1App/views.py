@@ -34,13 +34,20 @@ def crear_joven(request):
     
     if request.method =="POST":
         
-        info_formulario=request.POST
+        formulario=NuevoJoven(request.POST)
         
-        joven=Joven(nombre=info_formulario["nombre"], apellido=info_formulario["apellido"], edad=int(info_formulario["edad"]))
+        if formulario.is_valid():
+            
+            info_joven= formulario.cleaned_data
         
-        joven.save()
+            joven=Joven(nombre=info_joven["nombre"], apellido=info_joven["apellido"], edad=int(info_joven["edad"]))
+            
+            joven.save()
+            
+            return redirect("jovenes")
         
-        return redirect("jovenes")
+        else:
+            return render(request,"ProyectoCoder1App/formulario_joven.html",{"form":formulario})
     else:
         
         formulario_vacio = NuevoJoven()
