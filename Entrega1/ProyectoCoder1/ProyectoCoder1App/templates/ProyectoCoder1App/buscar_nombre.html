@@ -4,7 +4,7 @@
 
 {% block ContenidoQueCambia %}
 
-<p>Buscar joven por nombre: 
+<p>Buscar por nombre: 
     <form action="" method="post">
         {% csrf_token %}
 
@@ -17,5 +17,13 @@
         <input type="submit" value="Buscar">
     </form> 
 </p>
+
+<p>Resultados: </p>
+<ul>
+
+    {%for resultado in nombres%}
+        <li>{{resultado.nombre}} [{{resultado.apellido}}] [{{resultado.edad}}]</li>
+    {%endfor%}
+</ul>
 
 {% endblock %}

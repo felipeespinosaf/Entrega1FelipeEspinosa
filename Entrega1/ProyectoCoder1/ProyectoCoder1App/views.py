@@ -54,11 +54,21 @@ def crear_joven(request):
         
         return render(request,"ProyectoCoder1App/formulario_joven.html",{"form":formulario_vacio})
     
-def buscar_joven(request):
+def buscar_nombre(request):
     
-    lista_jovenes = []
+    if request.method == "POST":
+        
+        nombre= request.POST["nombre"]
+        
+        nombres = Joven.objects.filter(nombre__icontains=nombre)
+        
+        return render(request, "ProyectoCoder1App/buscar_nombre.html", {"nombres":nombres})
+        
+    else:
     
-    return render(request, "ProyectoCoder1App/buscar_joven.html", {"jovenes":lista_jovenes})
+        nombres = []
+    
+        return render(request, "ProyectoCoder1App/buscar_nombre.html", {"nombres":nombres})
     
 
 def adultos(request):
