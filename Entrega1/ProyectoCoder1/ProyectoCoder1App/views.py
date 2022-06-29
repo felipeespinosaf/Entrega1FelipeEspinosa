@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from ProyectoCoder1App import forms
 from .models import*
@@ -27,7 +27,20 @@ def jovenes(request):
 
 def crear_joven(request):
     
-    return render(request, "ProyectoCoder1App/formulario_joven.html",{})
+    
+    if request.method =="POST":
+        
+        info_formulario=request.POST
+        
+        joven=Joven(nombre=info_formulario["nombre"], apellido=info_formulario["apellido"], edad=int(info_formulario["edad"]))
+        
+        joven.save()
+        
+        return redirect("jovenes")
+    else:
+        return render(request,"ProyectoCoder1App/formulario_joven.html",{})
+    
+    
 
 def adultos(request):
     

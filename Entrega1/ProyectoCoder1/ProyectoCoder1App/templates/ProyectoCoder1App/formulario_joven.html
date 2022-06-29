@@ -8,8 +8,8 @@
 <form action="" method="post">
     {% csrf_token %}
 
-    <p>Nombre: <input type="text" name="nombre" id=""></p>
-    <P>Apellido: <input type="text" name="apellido" id=""></P>
+    <p>Nombre: <input type="text" name="nombre" id="" maxlength="40"></p>
+    <P>Apellido: <input type="text" name="apellido" id="" maxlength="40"></P>
     <P>Edad: <input type="number" name="edad" id min="0"> </P>
 
     <input type="submit" value="Crear Joven">
