@@ -3,7 +3,11 @@ from django.shortcuts import redirect, render
 
 from ProyectoCoder1App import forms
 from .models import*
-# from ProyectoCoder1App import JovenFormulario
+
+
+from .forms import NuevoJoven
+# from ProyectoCoder1App import J
+# ovenFormulario
 # Create your views here.
 
 
@@ -38,7 +42,10 @@ def crear_joven(request):
         
         return redirect("jovenes")
     else:
-        return render(request,"ProyectoCoder1App/formulario_joven.html",{})
+        
+        formulario_vacio = NuevoJoven()
+        
+        return render(request,"ProyectoCoder1App/formulario_joven.html",{"form":formulario_vacio})
     
     
 
