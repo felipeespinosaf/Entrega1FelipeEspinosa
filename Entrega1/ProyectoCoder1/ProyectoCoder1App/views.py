@@ -69,9 +69,8 @@ def adultos(request):
     
     return render(request, "ProyectoCoder1App/adultos.html", {"adultos":lista_adultos})
     # return HttpResponse ("Vista de adultos")
-    
+   
 def crear_adulto(request):
-    
     
     if request.method =="POST":
         
@@ -94,6 +93,35 @@ def crear_adulto(request):
         formulario_vacio = NuevoAdulto()
         
         return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario_vacio})
+    
+def buscar_adulto(request):
+    
+    lista_adultos = []
+    
+    return render(request, "ProyectoCoder1App/buscar_adulto.html", {"adultos":lista_adultos})
+    
+    
+    # if request.method =="POST":
+        
+    #     formulario=NuevoAdulto(request.POST)
+        
+    #     if formulario.is_valid():
+            
+    #         info_adulto= formulario.cleaned_data
+        
+    #         adulto=Adulto(nombre=info_adulto["nombre"], apellido=info_adulto["apellido"], edad=int(info_adulto["edad"]))
+            
+    #         adulto.save()
+            
+    #         return redirect("adultos")
+        
+    #     else:
+    #         return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario})
+    # else:
+        
+    #     formulario_vacio = NuevoAdulto()
+        
+    #     return render(request,"ProyectoCoder1App/formulario_adulto.html",{"form":formulario_vacio})
 
 def viejos(request):
     
@@ -128,27 +156,9 @@ def crear_viejo(request):
         return render(request,"ProyectoCoder1App/formulario_viejo.html",{"form":formulario_vacio})
     # return HttpResponse ("Vista de viejos")
     
-# def joven_formulario(request):
+def buscar_viejo(request):
+
+
+    lista_viejos = []
     
-    
-#     if request.method =="Post":
-        
-#         miFormulario=JovenFormulario(request.POST)
-        
-#         print(miFormulario)
-        
-#         if miFormulario.is_valid:
-            
-#             informacion = miFormulario.cleaned_data
-            
-        
-#             joven=Joven(nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'])
-            
-#             joven.save()
-        
-#             return render(request, "ProyectoCoder1App/index.html")
-#     else:
-#         miFormulario=JovenFormulario()
-    
-    
-#     return render(request, "ProyectoCoder1App/joven_formulario.html", {"miFormulario": miFormulario})
+    return render(request, "ProyectoCoder1App/buscar_viejo.html", {"adultos":lista_viejos})
